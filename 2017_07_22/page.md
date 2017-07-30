@@ -471,6 +471,8 @@ The source code of this project is [freely available on github](https://github.c
 
 * [Keras example on character to character text generation](https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py)
 
+* [paper - Generating Sequences With Recurrent Neural Networks](https://arxiv.org/abs/1308.0850)
+
 * [paper - Long Short-Term Memory (LSTM original paper)](http://dl.acm.org/citation.cfm?id=1246450) 
 
 * [paper - Recurrent Batch Normalization](https://arxiv.org/abs/1603.09025)
