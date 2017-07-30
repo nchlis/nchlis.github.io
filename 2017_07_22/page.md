@@ -203,7 +203,7 @@ As we discussed above, **Recurrent Batch Normalization** and **Residual LSTM** (
 
 to training deep recurrent networks, but we're not there yet. However, in this specific problem we saw that even our _best_ 2-layer LSTM
 
-starts overfitting quite early. So let's training again, this time using a **small value of dropout=0.2** and see if the validation loss improves.
+starts overfitting quite early. So let's train it again, this time using a **small value of dropout=0.2** and see if the validation loss improves.
 
 **Using dropout minimally increases training time per epoch, needs 2 or 3 times the number of epochs to reach a minimum value for the validation loss.**
 

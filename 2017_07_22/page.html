@@ -165,7 +165,7 @@ model.<span class="bu">compile</span>(loss<span class="op">=</span><span class="
 <h2 id="can-we-do-better">Can we do better?</h2>
 <p>As we discussed above, <strong>Recurrent Batch Normalization</strong> and <strong>Residual LSTM</strong> (links at the end of the article) seem promising approaches</p>
 <p>to training deep recurrent networks, but we're not there yet. However, in this specific problem we saw that even our <em>best</em> 2-layer LSTM</p>
-<p>starts overfitting quite early. So let's training again, this time using a <strong>small value of dropout=0.2</strong> and see if the validation loss improves.</p>
+<p>starts overfitting quite early. So let's train it again, this time using a <strong>small value of dropout=0.2</strong> and see if the validation loss improves.</p>
 <p><strong>Using dropout minimally increases training time per epoch, needs 2 or 3 times the number of epochs to reach a minimum value for the validation loss.</strong></p>
 <p>In this case, the training time per epoch increased by 2.5 min from 36 to 38.5 min per epoch, but converged much later as seen in the training curve.</p>
 <p>The <strong>original 2-layer LSTM achieves 1.139 validation loss (7th epoch)</strong>, while the <strong>2-layer LSTM with dropout=0.2 achieves 1.12 validation loss (20th epoch)</strong>.</p>
