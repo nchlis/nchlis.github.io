@@ -205,7 +205,7 @@ to training deep recurrent networks, but we're not there yet. However, in this s
 
 starts overfitting quite early. So let's train it again, this time using a **small value of dropout=0.2** and see if the validation loss improves.
 
-**Using dropout minimally increases training time per epoch, needs 2 or 3 times the number of epochs to reach a minimum value for the validation loss.**
+**Using dropout minimally increases training time per epoch, but needs 2 or 3 times the number of epochs to reach a minimum value for the validation loss.**
 
 In this case, the training time per epoch increased by 2.5 min from 36 to 38.5 min per epoch, but converged much later as seen in the training curve. 
 
