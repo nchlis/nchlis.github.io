@@ -187,15 +187,15 @@ loss to start converging.
 
 ## The verdict
 
-**So, are deeper recurrent networks worth it? Yes, if they are not too deep**. As we can see above, the 1-layer LSTM is the worst
+**So, are deeper recurrent networks worth it? Yes, if they are not too deep**. As we can see above, the 1-layer LSTM is worse than the
 
-of all networks in terms of performance (although it trains fast). The 2-layer LSTM is the best network in terms of performance
+2-layer network in terms of performance (although it trains fast). **The 2-layer LSTM is the best network in terms of performance**
 
 (validation loss) and is very close to the 1-layer network in terms of overall training time (time per epoch and number of epochs
 
-until convergence). The 5-layer network is not as useful. It is much harder and slower to train than the 2-layer network and performs
+until convergence). The 5-layer network is not as useful. It is much harder and slower to train than the 2-layer network and is the worst
 
-worse in terms of validation loss. However, it still outperforms the 1-layer network.
+of all networks in terms of performance.
 
 ## Can we do better?
 

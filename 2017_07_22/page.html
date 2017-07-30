@@ -157,11 +157,11 @@ model.<span class="bu">compile</span>(loss<span class="op">=</span><span class="
 <p>loss to start converging.</p>
 <p><img src="./train_curves.png" alt="Drawing" style="width: 600px;"/></p>
 <h2 id="the-verdict">The verdict</h2>
-<p><strong>So, are deeper recurrent networks worth it? Yes, if they are not too deep</strong>. As we can see above, the 1-layer LSTM is the worst</p>
-<p>of all networks in terms of performance (although it trains fast). The 2-layer LSTM is the best network in terms of performance</p>
+<p><strong>So, are deeper recurrent networks worth it? Yes, if they are not too deep</strong>. As we can see above, the 1-layer LSTM is worse than the</p>
+<p>2-layer network in terms of performance (although it trains fast). <strong>The 2-layer LSTM is the best network in terms of performance</strong></p>
 <p>(validation loss) and is very close to the 1-layer network in terms of overall training time (time per epoch and number of epochs</p>
-<p>until convergence). The 5-layer network is not as useful. It is much harder and slower to train than the 2-layer network and performs</p>
-<p>worse in terms of validation loss. However, it still outperforms the 1-layer network.</p>
+<p>until convergence). The 5-layer network is not as useful. It is much harder and slower to train than the 2-layer network and is the worst</p>
+<p>of all networks in terms of performance.</p>
 <h2 id="can-we-do-better">Can we do better?</h2>
 <p>As we discussed above, <strong>Recurrent Batch Normalization</strong> and <strong>Residual LSTM</strong> (links at the end of the article) seem promising approaches</p>
 <p>to training deep recurrent networks, but we're not there yet. However, in this specific problem we saw that even our <em>best</em> 2-layer LSTM</p>
