@@ -17,7 +17,7 @@ enough training data is available.
 ## The Actual Motivation
 Character to character Recurrent Neural Networks (RNNs) are a nice model
 
-to study properties of RNNs on a fun problem. They are not the best models
+to study the properties of RNNs on a fun problem. They are not the best models
 
 out there for sequence to sequence prediction, but they are easy and fun
 
