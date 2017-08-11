@@ -7,7 +7,7 @@
 ### Short answer: Yes.
 Convolutional Neural Networks (CNNs) are currently the state of the art method
 
-when it comes to computer vision tasks. However, usually the datasets available
+when it comes to computer vision tasks. However, the datasets usually available
 
 are not large _enough_ so CNNs tend to overfit and not generalize as well to
 
@@ -27,15 +27,15 @@ to only apply [Batch Normalization](https://arxiv.org/abs/1502.03167) which also
 
 In the original Dropout paper it is demonstrated that it is beneficial to apply
 
-Dropout fully connected, as well as convolutional layers in a VGG-like network.
+Dropout to fully connected, as well as convolutional layers in a VGG-like network.
 
 Nevertheless, in most cases where Dropout is used, it is usually applied 
 
 **only in the last fully connected layer(s)** in [VGG](https://arxiv.org/pdf/1409.1556.pdf), [VGG-like networks](https://arxiv.org/pdf/1502.01852.pdf)
 
-or other architectures like [Xception](https://arxiv.org/abs/1610.02357). In [Inception v4](https://arxiv.org/abs/1602.07261)
+or other architectures like [Xception](https://arxiv.org/abs/1610.02357).
 
-Dropout is applied only to the last average pooling layer, since there are no
+In [Inception v4](https://arxiv.org/abs/1602.07261) Dropout is applied only to the last average pooling layer, since there are no
 
 fully connected layers. One exception to the above trend is [Wide ResNets](https://arxiv.org/abs/1605.07146), where
 
