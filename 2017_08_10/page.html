@@ -51,7 +51,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2 id="motivation-do-we-still-need-dropout">Motivation: Do we still need Dropout?</h2>
 <h3 id="short-answer-yes.">Short answer: Yes.</h3>
 <p>Convolutional Neural Networks (CNNs) are currently the state of the art method</p>
-<p>when it comes to computer vision tasks. However, usually the datasets available</p>
+<p>when it comes to computer vision tasks. However, the datasets usually available</p>
 <p>are not large <em>enough</em> so CNNs tend to overfit and not generalize as well to</p>
 <p>new data. <a href="http://jmlr.org/papers/v15/srivastava14a.html">Dropout</a> is the standard method of regularizing neural networks</p>
 <p>(including CNNs) and has been used extensively over the years. For example in</p>
@@ -60,11 +60,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>As a result, lately there's an emerging trend (e.g. <a href="https://arxiv.org/abs/1512.00567">Inception v3</a> and <a href="https://arxiv.org/abs/1512.03385">Residual Networks</a>)</p>
 <p>to only apply <a href="https://arxiv.org/abs/1502.03167">Batch Normalization</a> which also has a regularizing effect.</p>
 <p>In the original Dropout paper it is demonstrated that it is beneficial to apply</p>
-<p>Dropout fully connected, as well as convolutional layers in a VGG-like network.</p>
+<p>Dropout to fully connected, as well as convolutional layers in a VGG-like network.</p>
 <p>Nevertheless, in most cases where Dropout is used, it is usually applied</p>
 <p><strong>only in the last fully connected layer(s)</strong> in <a href="https://arxiv.org/pdf/1409.1556.pdf">VGG</a>, <a href="https://arxiv.org/pdf/1502.01852.pdf">VGG-like networks</a></p>
-<p>or other architectures like <a href="https://arxiv.org/abs/1610.02357">Xception</a>. In <a href="https://arxiv.org/abs/1602.07261">Inception v4</a></p>
-<p>Dropout is applied only to the last average pooling layer, since there are no</p>
+<p>or other architectures like <a href="https://arxiv.org/abs/1610.02357">Xception</a>.</p>
+<p>In <a href="https://arxiv.org/abs/1602.07261">Inception v4</a> Dropout is applied only to the last average pooling layer, since there are no</p>
 <p>fully connected layers. One exception to the above trend is <a href="https://arxiv.org/abs/1605.07146">Wide ResNets</a>, where</p>
 <p>it is demonstrated that applying dropout between convolutional layers in ResNets</p>
 <p>is generally a good idea.</p>
