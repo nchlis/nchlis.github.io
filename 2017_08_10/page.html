@@ -1,0 +1,997 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   42: A blog on A.I.!
+  </title>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css" rel="stylesheet"/>
+  <style type="text/css">
+   ::selection,a::selection{background:rgba(255,255,0,.3)}a,a::selection{color:#0645ad}hr,img{border:0}a,ins{text-decoration:none}::selection,ins,mark{color:#000}dfn,mark{font-style:italic}hr,ol,p,ul{margin:1em 0}table tr td,table tr th{border:1px solid #ccc;text-align:left;padding:6px 13px;margin:0}hr,pre code,table,table tr{padding:0}pre,pre code{white-space:pre}html{font-size:100%;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{color:#444;font-family:Georgia,Palatino,"Palatino Linotype",Times,"Times New Roman",serif;font-size:12px;line-height:1.5em;padding:1em;margin:auto;max-width:42em;background:#fefefe}a:visited{color:#0b0080}a:hover{color:#06e}a:active{color:#faa700}a:focus{outline:dotted thin}a:active,a:hover{outline:0}::-moz-selection{background:rgba(255,255,0,.3);color:#000}a::-moz-selection{background:rgba(255,255,0,.3);color:#0645ad}img{max-width:100%;-ms-interpolation-mode:bicubic;vertical-align:middle}h1,h2,h3,h4,h5,h6{font-weight:400;color:#111;line-height:1em}b,h4,h5,h6,mark,strong,table tr th{font-weight:700}h1{font-size:2.5em}h2{font-size:2em}h3{font-size:1.5em}h4{font-size:1.2em}h5{font-size:1em}h6{font-size:.9em}blockquote{color:#666;margin:0;padding-left:3em;border-left:.5em #EEE solid}hr{display:block;height:2px;border-top:1px solid #aaa;border-bottom:1px solid #eee}code,kbd,pre,samp{color:#000;font-family:monospace,monospace;font-size:.98em}pre{white-space:pre-wrap;word-wrap:break-word}ins{background:#ff9}mark{background:#ff0}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}ol,ul{padding:0 0 0 2em}li p:last-child{margin:0}dd{margin:0 0 0 2em}table{border-collapse:collapse;border-spacing:0}td{vertical-align:top}@media only screen and (min-width:480px){body{font-size:14px}}@media only screen and (min-width:768px){body{font-size:16px}}@media print{blockquote,img,pre,tr{page-break-inside:avoid}*{background:0 0!important;color:#000!important;filter:none!important;-ms-filter:none!important}body{font-size:12pt;max-width:100%}a,a:visited{text-decoration:underline}hr{height:1px;border:0;border-bottom:1px solid #000}a[href]:after{content:" (" attr(href) ")"}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}blockquote,pre{border:1px solid #999;padding-right:1em}img{max-width:100%!important}@page :left{margin:15mm 20mm 15mm 10mm}@page :right{margin:15mm 10mm 15mm 20mm}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}}table tr{border-top:1px solid #ccc;background-color:#fff;margin:0}table tr:nth-child(2n){background-color:#aaa}table tr td :first-child,table tr th :first-child{margin-top:0}table tr td:last-child,table tr th :last-child{margin-bottom:0}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px}pre code{margin:0;border:none;background:0 0}.highlight pre,pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}
+  </style>
+ </head>
+ <body>
+  <h1 id="applying-dropout-in-convolutional-neural-nets-where-and-to-what-extent">
+   Applying Dropout in Convolutional Neural Nets: Where and to what extent?
+  </h1>
+  <p>
+   <a href="../index.html">
+    Back to index
+   </a>
+  </p>
+  <p>
+   <a href="https://github.com/nchlis/CNN_dropout">
+    Source code for this project
+   </a>
+  </p>
+  <h2 id="motivation-do-we-still-need-dropout">
+   Motivation: Do we still need Dropout?
+  </h2>
+  <h3 id="short-answer-yes">
+   Short answer: Yes.
+  </h3>
+  <p>
+   Convolutional Neural Networks (CNNs) are currently the state of the art method
+  </p>
+  <p>
+   when it comes to computer vision tasks. However, the datasets usually available
+  </p>
+  <p>
+   are not large
+   <em>
+    enough
+   </em>
+   so CNNs tend to overfit and not generalize as well to
+  </p>
+  <p>
+   new data.
+   <a href="http://jmlr.org/papers/v15/srivastava14a.html">
+    Dropout
+   </a>
+   is the standard method of regularizing neural networks
+  </p>
+  <p>
+   (including CNNs) and has been used extensively over the years. For example in
+  </p>
+  <p>
+   <a href="https://arxiv.org/pdf/1409.1556.pdf">
+    VGG
+   </a>
+   or
+   <a href="https://arxiv.org/pdf/1502.01852.pdf">
+    VGG-like networks
+   </a>
+   . Nevertheless,
+   <strong>
+    Dropout tends to increase the number
+   </strong>
+  </p>
+  <p>
+   <strong>
+    of epochs required until convergence
+   </strong>
+   .
+  </p>
+  <p>
+   As a result, lately there’s an emerging trend (e.g.
+   <a href="https://arxiv.org/abs/1512.00567">
+    Inception v3
+   </a>
+   and
+   <a href="https://arxiv.org/abs/1512.03385">
+    Residual Networks
+   </a>
+   )
+  </p>
+  <p>
+   to only apply
+   <a href="https://arxiv.org/abs/1502.03167">
+    Batch Normalization
+   </a>
+   which also has a regularizing effect.
+  </p>
+  <p>
+   In the original Dropout paper it is demonstrated that it is beneficial to apply
+  </p>
+  <p>
+   Dropout to fully connected, as well as convolutional layers in a VGG-like network.
+  </p>
+  <p>
+   Nevertheless, in most cases where Dropout is used, it is usually applied
+  </p>
+  <p>
+   <strong>
+    only in the last fully connected layer(s)
+   </strong>
+   in
+   <a href="https://arxiv.org/pdf/1409.1556.pdf">
+    VGG
+   </a>
+   ,
+   <a href="https://arxiv.org/pdf/1502.01852.pdf">
+    VGG-like networks
+   </a>
+  </p>
+  <p>
+   or other architectures like
+   <a href="https://arxiv.org/abs/1610.02357">
+    Xception
+   </a>
+   .
+  </p>
+  <p>
+   In
+   <a href="https://arxiv.org/abs/1602.07261">
+    Inception v4
+   </a>
+   Dropout is applied only to the last average pooling layer, since there are no
+  </p>
+  <p>
+   fully connected layers. One exception to the above trend is
+   <a href="https://arxiv.org/abs/1605.07146">
+    Wide ResNets
+   </a>
+   , where
+  </p>
+  <p>
+   it is demonstrated that applying dropout between convolutional layers in ResNets
+  </p>
+  <p>
+   is generally a good idea.
+  </p>
+  <p>
+   In this post we will demonstrate that
+   <strong>
+    using Dropout in conjunction with
+   </strong>
+  </p>
+  <p>
+   <strong>
+    Batch Normalization is beneficial
+   </strong>
+   even for simple VGG-like architectures.
+  </p>
+  <p>
+   We argue that even in cases where Batch Normalization can complement or possibly
+  </p>
+  <p>
+   be a subtitute for the the regularizing effect of Dropout, the additional
+  </p>
+  <p>
+   <strong>
+    ensembling effect of Dropout
+   </strong>
+   still leads to gains in generalization performance.
+  </p>
+  <p>
+   However, this comes at the
+   <strong>
+    cost of additional epochs
+   </strong>
+   being required during training.
+  </p>
+  <h2 id="where-to-apply-dropout">
+   Where to apply Dropout?
+  </h2>
+  <h3 id="both-in-conv-and-fully-connected-layers-but-to-different-extent">
+   Both in Conv and Fully Connected layers, but to different extent.
+  </h3>
+  <p>
+   We will show that applying Dropout in convolutional layers can be tricky. To be
+  </p>
+  <p>
+   precise, if the dropout probability is too high, the overal performance of the
+  </p>
+  <p>
+   network deteriorates. But If the dropout probability in the convolutional layers
+  </p>
+  <p>
+   is small enough, there is an increase in performance. Moreover, we will study in
+  </p>
+  <p>
+   more detail the
+   <strong>
+    effect of dropout in convolutional layers of different depth
+   </strong>
+   in
+  </p>
+  <p>
+   in the network. Something that is hinted at, but not fully demonstrated in the
+  </p>
+  <p>
+   original Dropout paper.
+  </p>
+  <h2 id="the-cifar-10-dataset">
+   The CIFAR-10 dataset
+  </h2>
+  <p>
+   The
+   <a href="https://www.cs.toronto.edu/~kriz/cifar.html">
+    CIFAR 10 dataset
+   </a>
+   consists of 60,000 images (50,000 training, 10,000 test set)
+  </p>
+  <p>
+   that belong to 10 distinct categories. Each image is 32x32x3. It’s quite small
+  </p>
+  <p>
+   for today’s standards but it is a nice dataset to play around with, since re-training
+  </p>
+  <p>
+   a different network on it is relatively fast (few hours). So it’s perfect for experiments
+  </p>
+  <p>
+   if you are doing deep learning on a
+   <em>
+    less-than-infinite
+   </em>
+   budget. Next, we show
+  </p>
+  <p>
+   one image for each of the classes present in the dataset
+  </p>
+  <p>
+   <img alt="Drawing" src="./CIFAR10_all_categories.png" style="width: 300px;"/>
+  </p>
+  <p>
+   Just a reminder: the purpose of this post is to explore the properties of Dropout
+  </p>
+  <p>
+   in CNNs, not to reach state of the art results in CIFAR10. In this post we will use
+  </p>
+  <p>
+   the CIFAR10
+   <em>
+    test set
+   </em>
+   as a
+   <em>
+    validation set
+   </em>
+   (to save the model that performs best
+  </p>
+  <p>
+   on the validation set during training). So to be technically correct, accuracy on
+  </p>
+  <p>
+   the CIFAR 10 test set, is validation accuracy (and not test accuracy) in this case.
+  </p>
+  <h2 id="network-architecture">
+   Network architecture
+  </h2>
+  <p>
+   We will use keras to define our networks. We will use a VGG-like convolutional
+  </p>
+  <p>
+   network that consists of 6 convolutional and 2 fully connected layers. The convolutional
+  </p>
+  <p>
+   layers are separated into 3 blocks of 2 layers each. Convolutional layers in the
+  </p>
+  <p>
+   same block have the same number of features. We apply Dropout and max-poooling after every
+  </p>
+  <p>
+   convolutional block. We apply Batch Normalization before every ReLU activation.
+  </p>
+  <p>
+   Finally, we apply Dropout after every Fully Connected (Dense) layer. We will use
+  </p>
+  <p>
+   <a href="https://arxiv.org/abs/1412.6980">
+    adam
+   </a>
+   to train the network, with default parameters as set defined by Keras
+  </p>
+  <p>
+   (lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0). We will train
+  </p>
+  <p>
+   each network for 250 epochs and save the model with the best performance on the
+  </p>
+  <p>
+   validation set.
+  </p>
+  <h3 id="the-newtork-in-detail">
+   The newtork in detail
+  </h3>
+  <p>
+   Please note that a dropout layer with dropout probability = 0, is just an
+  </p>
+  <p>
+   identity layer. This allows us to re-use the same code to define networks that
+  </p>
+  <p>
+   do or do not have dropout at different points, just by changing the argument
+  </p>
+  <p>
+   of the dropout layer. Overall, the network has
+   <strong>
+    approximately 2M parameters
+   </strong>
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 512
+add_BatchNorm = True
+dropout_rate_conv = [0.0, 0.0, 0.0]#1 value for each conv block
+dropout_rate_dense = 0.0
+
+model_id='CNN_bn_'+str(add_BatchNorm)+'_dropConv_'+str(dropout_rate_conv[0])+'_'+\
+str(dropout_rate_conv[1])+'_'+str(dropout_rate_conv[2])+'_'+'dropDense_'+str(dropout_rate_dense)
+print('Build model...',model_id)
+
+model = Sequential()
+
+#Conv block #1
+model.add(Conv2D(nfilters[0], (3, 3), padding='same',
+                 input_shape=X_tr.shape[1:]))
+if(add_BatchNorm==True):
+    model.add(BatchNormalization(axis=-1))
+model.add(Activation('relu'))
+model.add(Dropout(dropout_rate_conv[0]))
+
+model.add(Conv2D(nfilters[0], (3, 3)))
+if(add_BatchNorm==True):
+    model.add(BatchNormalization(axis=-1))
+model.add(Activation('relu'))
+model.add(Dropout(dropout_rate_conv[0]))
+
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+#Conv block #2
+model.add(Conv2D(nfilters[1], (3, 3), padding='same'))
+if(add_BatchNorm==True):
+    model.add(BatchNormalization(axis=-1))
+model.add(Activation('relu'))
+model.add(Dropout(dropout_rate_conv[1]))
+
+model.add(Conv2D(nfilters[1], (3, 3)))
+if(add_BatchNorm==True):
+    model.add(BatchNormalization(axis=-1))
+model.add(Activation('relu'))
+model.add(Dropout(dropout_rate_conv[1]))
+
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+#Conv block #3
+model.add(Conv2D(nfilters[2], (3, 3), padding='same'))
+if(add_BatchNorm==True):
+    model.add(BatchNormalization(axis=-1))
+model.add(Activation('relu'))
+model.add(Dropout(dropout_rate_conv[2]))
+
+model.add(Conv2D(nfilters[2], (3, 3)))
+if(add_BatchNorm==True):
+    model.add(BatchNormalization(axis=-1))
+model.add(Activation('relu'))
+model.add(Dropout(dropout_rate_conv[2]))
+
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+#at this point each image has shape (None, 2, 2, nfilters[2])
+model.add(Flatten())
+#at this point each image has shape (None, 2*2*nfilters[2])
+
+model.add(Dense(ndense))
+if(add_BatchNorm==True):
+    model.add(BatchNormalization(axis=-1))
+model.add(Activation('relu'))
+model.add(Dropout(dropout_rate_dense))
+
+model.add(Dense(ndense))
+if(add_BatchNorm==True):
+    model.add(BatchNormalization(axis=-1))
+model.add(Activation('relu'))
+model.add(Dropout(dropout_rate_dense))
+
+model.add(Dense(num_classes))
+model.add(Activation('softmax'))
+
+model.compile(loss='categorical_crossentropy',
+              optimizer='adam',
+              metrics=['accuracy'])
+</code></pre>
+  <h2 id="results">
+   Results
+  </h2>
+  <p>
+   For the remainder of this post we will consider 2 levels of Dropout, for simplicity:
+  </p>
+  <ul>
+   <li>
+    <p>
+     <em>
+      Low Dropout
+     </em>
+     : 0.2 probability to drop a unit.
+    </p>
+   </li>
+   <li>
+    <p>
+     <em>
+      High Dropout
+     </em>
+     : 0.5 probability to drop a unit.
+    </p>
+   </li>
+  </ul>
+  <h2 id="establishing-a-baseline-with-batch-normalization">
+   Establishing a baseline with Batch Normalization
+  </h2>
+  <p>
+   We will consider a batch normalized version of the network as the baseline for
+  </p>
+  <p>
+   all subsequent comparisons. Batch normalization leads to a considerable increase
+  </p>
+  <p>
+   in classification accuracy of the validation set, compared to ta
+   <em>
+    vanilla
+   </em>
+   version
+  </p>
+  <p>
+   of the network where no regularization is used.
+  </p>
+  <p>
+   <img alt="Drawing" src="./baseline.png" style="width: 500px;"/>
+  </p>
+  <p>
+   <img alt="Drawing" src="./baseline_curve.png" style="width: 500px;"/>
+  </p>
+  <h4 id="note-batch-normalization-increased-execution-time-per-epoch-by-41">
+   Note: Batch Normalization increased execution time per epoch by ~41%
+  </h4>
+  <p>
+   We can see that training the
+   <em>
+    vanilla
+   </em>
+   network deteriorates after ~150 epochs,
+  </p>
+  <p>
+   perhaps since no decay was used with adam. On the other hand, there are no problems
+  </p>
+  <p>
+   when training the batch normalized version of the network.
+  </p>
+  <h2 id="dropout-in-conv-layers-low-is-beneficial-high-is-bad">
+   Dropout in Conv layers: Low is beneficial, High is bad.
+  </h2>
+  <h4 id="low-dropout-increase-in-test-accuracy">
+   Low Dropout: increase in test accuracy
+  </h4>
+  <p>
+   We do not apply dropout after the fully connected (Dense) layers. In the
+  </p>
+  <p>
+   <strong>
+    low dropout setting
+   </strong>
+   we setup the above network according to:
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 512
+add_BatchNorm = True
+dropout_rate_conv = [0.2, 0.2, 0.2]#low dropout of 0.2
+dropout_rate_dense = 0.0
+</code></pre>
+  <p>
+   As we can see below, applying batch normalization + low dropout increases classification
+  </p>
+  <p>
+   accuracy on the validation set, compared to the baseline (batch normalization, no dropout).
+  </p>
+  <h4 id="high-dropout-training-the-network-is-probably-harder">
+   High Dropout: training the network is (probably) harder
+  </h4>
+  <p>
+   In the
+   <strong>
+    high dropout setting
+   </strong>
+   we setup the network according to
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 512
+add_BatchNorm = True
+dropout_rate_conv = [0.5, 0.5, 0.5]#high dropout of 0.5
+dropout_rate_dense = 0.0
+</code></pre>
+  <p>
+   If we increase the dropout probability to 0.5, the performance of the network
+  </p>
+  <p>
+   deteriorates.
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_conv.png" style="width: 500px;"/>
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_conv_curve.png" style="width: 500px;"/>
+  </p>
+  <p>
+   Deterioration of network performance with high dropout in the convolutional layers
+  </p>
+  <p>
+   may be attributed to one of two possible causes (or both).
+  </p>
+  <p>
+   <strong>
+    (1)
+   </strong>
+   High dropout of 0.5 leaves out half the network, so the CNN does not have enough
+  </p>
+  <p>
+   capacity to model the task at hand.
+  </p>
+  <p>
+   <strong>
+    (2)
+   </strong>
+   High dropout hinders training of the CNN.
+  </p>
+  <p>
+   We demonstrate that
+   <strong>
+    (1)
+   </strong>
+   is not the case, by training a network where we
+  </p>
+  <p>
+   use batch normalization, no dropout but
+   <strong>
+    halve the number of filters
+   </strong>
+   at each convolutional
+  </p>
+  <p>
+   layer.
+  </p>
+  <pre><code class="python">nfilters = [32,64,128] #half number of filters
+ndense = 512
+add_BatchNorm = True
+dropout_rate_conv = [0.0, 0.0, 0.0]
+dropout_rate_dense = 0.0
+</code></pre>
+  <p>
+   The smaller network performs much better than the large network with 0.5
+  </p>
+  <p>
+   dropout, so model capacity is not a problem. Therefore, we conclude that
+  </p>
+  <p>
+   <strong>
+    Using high dropout values in convolutional layers probably hinders training
+   </strong>
+   .
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_conv_halffilters.png" style="width: 500px;"/>
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_conv_halffilters_curve.png" style="width: 500px;"/>
+  </p>
+  <h2 id="dropout-in-fully-connected-layers-the-more-the-merrier">
+   Dropout in Fully Connected layers: The more the merrier.
+  </h2>
+  <p>
+   In general, increases Dropout in Fully Connected (Dense) layers is a good idea,
+  </p>
+  <p>
+   since units of fully connected layers are much more reduntant than units of
+  </p>
+  <p>
+   convolutional layers. However, larger values of Dropout tend to require a larger
+  </p>
+  <p>
+   number of epochs until convergence (but the execution time per epoch is pretty much
+  </p>
+  <p>
+   the same). Last, one should be aware of the extreme case where Dropout is too
+  </p>
+  <p>
+   high and the network is underfitting.
+  </p>
+  <p>
+   In the
+   <strong>
+    low dropout setting
+   </strong>
+   we setup the above network according to:
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 512
+add_BatchNorm = True
+dropout_rate_conv = [0.0, 0.0, 0.0]
+dropout_rate_dense = 0.2#low dropout of 0.2
+</code></pre>
+  <p>
+   In the
+   <strong>
+    high dropout setting
+   </strong>
+   we setup the network according to
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 512
+add_BatchNorm = True
+dropout_rate_conv = [0.0, 0.0, 0.0]
+dropout_rate_dense = 0.5#high dropout of 0.5
+</code></pre>
+  <p>
+   We can see than increases dropout in fully connected layers increases classification
+  </p>
+  <p>
+   accuracy on the test set, but
+   <strong>
+    the improvement is marginal
+   </strong>
+   compared to adding
+  </p>
+  <p>
+   dropout after the convolutional layers. One possible expanation for this
+  </p>
+  <p>
+   could be that in the above network, the
+   <strong>
+    dense layers correspond to ~0.8M
+   </strong>
+   parameters
+  </p>
+  <p>
+   out
+   <strong>
+    of the ~2M
+   </strong>
+   parameters of the network. So is the improvement marginal
+  </p>
+  <p>
+   because dense layers are responsible for a minority of the overall parameters
+  </p>
+  <p>
+   of the network? We will come to this later.
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_dense.png" style="width: 500px;"/>
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_dense_curve.png" style="width: 500px;"/>
+  </p>
+  <h2 id="dropout-in-the-convolutional-and-fully-connected-layers-best-overall-performace">
+   Dropout in the Convolutional and Fully Connected layers: best overall performace
+  </h2>
+  <p>
+   Now we combine what we learned above and apply dropout in both the convolutional
+  </p>
+  <p>
+   and fully connected parts of the network. We only use Dropout with probability 0.2
+  </p>
+  <p>
+   for the convolutional layers and we try out Dropout with probability 0.2 or 0.5
+  </p>
+  <p>
+   for both fully connected layers.
+  </p>
+  <p>
+   So the first network is:
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 512
+add_BatchNorm = True
+dropout_rate_conv = [0.2, 0.2, 0.2]
+dropout_rate_dense = 0.2#low dropout of 0.2
+</code></pre>
+  <p>
+   while the second network is:
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 512
+add_BatchNorm = True
+dropout_rate_conv = [0.2, 0.2, 0.2]
+dropout_rate_dense = 0.5#high dropout of 0.5
+</code></pre>
+  <p>
+   We can see that simply combining what performed best in our previous tests:
+  </p>
+  <p>
+   Dropout 0.2 in the convolutional and Dropout 0.5 in the fully connected parts,
+  </p>
+  <p>
+   led to the best result overall.
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_both.png" style="width: 500px;"/>
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_both_curve.png" style="width: 500px;"/>
+  </p>
+  <h4 id="upscaling-the-fully-connected-layers">
+   Upscaling the Fully Connected layers
+  </h4>
+  <p>
+   Previously we speculated whether the minimal increase in performance when applying
+  </p>
+  <p>
+   Dropout in the fully connected layers only can be attributed to the fact that
+  </p>
+  <p>
+   fully connected layers make up for
+   <sub>
+    <strong>
+     0.8M
+    </strong>
+    of the
+   </sub>
+   <strong>
+    2M
+   </strong>
+   parameters of the network.
+  </p>
+  <p>
+   Now we demonstrate that
+   <strong>
+    adding Dropout in convolutional layers is beneficial,
+   </strong>
+  </p>
+  <p>
+   <strong>
+    even if fully connected layers make up for the majority of model parameters.
+   </strong>
+  </p>
+  <p>
+   To be precise, we upscale both fully connected layers from 512 to 1024 units each,
+  </p>
+  <p>
+   while leaving the convolutional part of the network the same. Now the fully connected
+  </p>
+  <p>
+   layers make up for
+   <sub>
+    <strong>
+     2M
+    </strong>
+    of the
+   </sub>
+   <strong>
+    3.2M
+   </strong>
+   parameters of the network. Next, we
+  </p>
+  <p>
+   evaluate 3 different versions of the network
+  </p>
+  <p>
+   No Dropout, only Batch Normalization:
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 1024
+add_BatchNorm = True
+dropout_rate_conv = [0.0, 0.0, 0.0]
+dropout_rate_dense = 0.0
+</code></pre>
+  <p>
+   Dropout in the fully connected layers only:
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 1024
+add_BatchNorm = True
+dropout_rate_conv = [0.0, 0.0, 0.0]
+dropout_rate_dense = 0.5# later 0.75
+</code></pre>
+  <p>
+   Dropout in the convolutional &amp; fully connected layers:
+  </p>
+  <pre><code class="python">nfilters = [64,128,256]
+ndense = 1024
+add_BatchNorm = True
+dropout_rate_conv = [0.2, 0.2, 0.2]
+dropout_rate_dense = 0.5# later 0.75
+</code></pre>
+  <p>
+   Adding dropout to the fully connected layers marginally increased validation
+  </p>
+  <p>
+   accuracy, while also adding dropout in the convolutional layers had a more
+  </p>
+  <p>
+   pronounced positive effect. It is interesting however, that none of the new
+  </p>
+  <p>
+   configurations beat the previous best of 0.8831 validation accuracy.
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_3M.png" style="width: 500px;"/>
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_3M_curve.png" style="width: 500px;"/>
+  </p>
+  <h2 id="applying-dropout-to-convolutional-blocks-of-different-depth">
+   Applying Dropout to Convolutional Blocks of different depth
+  </h2>
+  <p>
+   Let’s see what happens if we add
+   <em>
+    low
+   </em>
+   dropout of 0.2 and
+   <em>
+    high
+   </em>
+   dropout of 0.5
+  </p>
+  <p>
+   to
+   <strong>
+    only 1 of the 3 convolutional blocks
+   </strong>
+   .
+  </p>
+  <p>
+   <em>
+    Reminder:
+   </em>
+   The network consists of 3 convolutional blocks, with each block
+  </p>
+  <p>
+   consisting of 2 convolutional layers, while each convolution is followed by
+  </p>
+  <p>
+   Batch Normalization and a ReLU activation function. After each convolutional
+  </p>
+  <p>
+   block, max pooling is performed.
+  </p>
+  <p>
+   <strong>
+    Does the effect of Dropout depend on the depth of the convolutional block?
+   </strong>
+  </p>
+  <p>
+   <strong>
+    Yes!
+   </strong>
+   As we can see below, shallower convolutional blocks are more sensitive to
+  </p>
+  <p>
+   Dropout, so lower values are recommended. As we go deeper into the network,
+  </p>
+  <p>
+   higher values of Dropout can be used. For example, in the third convolutional block
+  </p>
+  <p>
+   there is an increase in performance even if we use
+   <em>
+    high
+   </em>
+   dropout (but
+   <em>
+    low
+   </em>
+   dropout
+  </p>
+  <p>
+   increases performance even more).
+  </p>
+  <p>
+   <img alt="Drawing" src="./dropout_convblocks_02_05.png" style="width: 500px;"/>
+  </p>
+  <h2 id="code-availability">
+   Code availability
+  </h2>
+  <p>
+   The source code of this project is
+   <a href="https://github.com/nchlis/CNN_dropout">
+    freely available on github
+   </a>
+   .
+  </p>
+  <h2 id="additional-information-useful-links">
+   Additional information &amp; Useful links
+  </h2>
+  <ul>
+   <li>
+    <p>
+     <a href="https://www.youtube.com/watch?v=LxfUGhug-iQ">
+      cs231n CNN lecture on youtube.
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://www.youtube.com/watch?v=hd_KFJ5ktUc">
+      cs231n lecture on youtube, covering Dropout, Batch Normaliztion and Adam.
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="http://torch.ch/blog/2015/07/30/cifar.html">
+      92.45% on CIFAR-10 in Torch
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://github.com/fchollet/keras/blob/master/examples/cifar10_cnn.py">
+      Keras example on CIFAR classification
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="http://jmlr.org/papers/v15/srivastava14a.html">
+      paper - Dropout: A Simple Way to Prevent Neural Networks from Overfitting
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1502.03167">
+      paper - Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1409.1556">
+      paper - Very Deep Convolutional Networks for Large-Scale Image Recognition
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/pdf/1502.01852.pdf">
+      paper - Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1512.00567">
+      paper - Rethinking the Inception Architecture for Computer Vision
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1512.03385">
+      paper - Deep Residual Learning for Image Recognition
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1602.07261">
+      paper - Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1610.02357">
+      paper - Xception: Deep Learning with Depthwise Separable Convolutions
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1605.07146">
+      paper - Wide Residual Networks
+     </a>
+    </p>
+   </li>
+  </ul>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js">
+  </script>
+  <script>
+   hljs.initHighlightingOnLoad();
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   MathJax.Hub.Config({"showProcessingMessages" : false,"messageStyle" : "none","tex2jax": { inlineMath: [ [ "$", "$" ] ] }});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,803 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   42: A blog on A.I.!
+  </title>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css" rel="stylesheet"/>
+  <style type="text/css">
+   ::selection,a::selection{background:rgba(255,255,0,.3)}a,a::selection{color:#0645ad}hr,img{border:0}a,ins{text-decoration:none}::selection,ins,mark{color:#000}dfn,mark{font-style:italic}hr,ol,p,ul{margin:1em 0}table tr td,table tr th{border:1px solid #ccc;text-align:left;padding:6px 13px;margin:0}hr,pre code,table,table tr{padding:0}pre,pre code{white-space:pre}html{font-size:100%;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{color:#444;font-family:Georgia,Palatino,"Palatino Linotype",Times,"Times New Roman",serif;font-size:12px;line-height:1.5em;padding:1em;margin:auto;max-width:42em;background:#fefefe}a:visited{color:#0b0080}a:hover{color:#06e}a:active{color:#faa700}a:focus{outline:dotted thin}a:active,a:hover{outline:0}::-moz-selection{background:rgba(255,255,0,.3);color:#000}a::-moz-selection{background:rgba(255,255,0,.3);color:#0645ad}img{max-width:100%;-ms-interpolation-mode:bicubic;vertical-align:middle}h1,h2,h3,h4,h5,h6{font-weight:400;color:#111;line-height:1em}b,h4,h5,h6,mark,strong,table tr th{font-weight:700}h1{font-size:2.5em}h2{font-size:2em}h3{font-size:1.5em}h4{font-size:1.2em}h5{font-size:1em}h6{font-size:.9em}blockquote{color:#666;margin:0;padding-left:3em;border-left:.5em #EEE solid}hr{display:block;height:2px;border-top:1px solid #aaa;border-bottom:1px solid #eee}code,kbd,pre,samp{color:#000;font-family:monospace,monospace;font-size:.98em}pre{white-space:pre-wrap;word-wrap:break-word}ins{background:#ff9}mark{background:#ff0}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}ol,ul{padding:0 0 0 2em}li p:last-child{margin:0}dd{margin:0 0 0 2em}table{border-collapse:collapse;border-spacing:0}td{vertical-align:top}@media only screen and (min-width:480px){body{font-size:14px}}@media only screen and (min-width:768px){body{font-size:16px}}@media print{blockquote,img,pre,tr{page-break-inside:avoid}*{background:0 0!important;color:#000!important;filter:none!important;-ms-filter:none!important}body{font-size:12pt;max-width:100%}a,a:visited{text-decoration:underline}hr{height:1px;border:0;border-bottom:1px solid #000}a[href]:after{content:" (" attr(href) ")"}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}blockquote,pre{border:1px solid #999;padding-right:1em}img{max-width:100%!important}@page :left{margin:15mm 20mm 15mm 10mm}@page :right{margin:15mm 10mm 15mm 20mm}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}}table tr{border-top:1px solid #ccc;background-color:#fff;margin:0}table tr:nth-child(2n){background-color:#aaa}table tr td :first-child,table tr th :first-child{margin-top:0}table tr td:last-child,table tr th :last-child{margin-bottom:0}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px}pre code{margin:0;border:none;background:0 0}.highlight pre,pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}
+  </style>
+ </head>
+ <body>
+  <h1 id="deep-or-wide-rnns-lets-generate-new-sherlock-holmes-stories-and-find-out">
+   Deep or Wide RNNs? Let’s generate new Sherlock Holmes stories and find out
+  </h1>
+  <p>
+   <a href="../index.html">
+    Back to index
+   </a>
+  </p>
+  <p>
+   <a href="https://github.com/nchlis/sherlocknet">
+    Source code for this project
+   </a>
+  </p>
+  <h2 id="motivation">
+   Motivation
+  </h2>
+  <p>
+   Let’s assume we like books by a certain author. Let’s also assume that this
+  </p>
+  <p>
+   certain author is not publishing books anymore because he/she is in (permanent)
+  </p>
+  <p>
+   retirement. No need to despair! With the help of A.I. we can train a neural
+  </p>
+  <p>
+   network to write text in the same style as our favorite author, assuming that
+  </p>
+  <p>
+   enough training data is available.
+  </p>
+  <h2 id="the-actual-motivation">
+   The Actual Motivation
+  </h2>
+  <p>
+   Character to character Recurrent Neural Networks (RNNs) are a nice model
+  </p>
+  <p>
+   to study the properties of RNNs on a fun problem. They are not the best models
+  </p>
+  <p>
+   out there for sequence to sequence prediction, but they are easy and fun
+  </p>
+  <p>
+   to use. So they are perfect for a hobby project. In this specific project
+  </p>
+  <p>
+   we will use a character to character Long Short Term Memory (LSTM) network
+  </p>
+  <p>
+   to predict the next character in a sequence of characters. After training,
+  </p>
+  <p>
+   the very same model can be used to generate arbitrary text in the same
+  </p>
+  <p>
+   style of the author of the text(s) we used for training.
+  </p>
+  <p>
+   So we can use a fun problem to study the properties of LSTMs. To be precise,
+  </p>
+  <p>
+   given a certain
+   <strong>
+    parameter budget
+   </strong>
+   of e.g. 3 Million parameters, what’s the
+  </p>
+  <p>
+   best way to spend them? Should we only use a single layer
+   <strong>
+    wide
+   </strong>
+   LSTM, use
+  </p>
+  <p>
+   a
+   <strong>
+    deep
+   </strong>
+   stack of narrow LSTMs (few hidden units per layer in the stack) or
+  </p>
+  <p>
+   is the optimal solution somewhere in between. So to rephrase te problem: given
+  </p>
+  <p>
+   a parameter budget, is there a
+   <strong>
+    sweet spot
+   </strong>
+   between width and depth of the
+  </p>
+  <p>
+   network, where we get the best
+   <em>
+    return of investment
+   </em>
+   of our parameter budget?
+  </p>
+  <p>
+   Let’s find out.
+  </p>
+  <h2 id="dataset">
+   Dataset
+  </h2>
+  <p>
+   We will use the Sherlock Holmes books by Sir Arthur Conan Doyle. One reason
+  </p>
+  <p>
+   to choose Sherlock Holmes is because the books are interesting, another reason
+  </p>
+  <p>
+   is that there are many books availabe (8 of them) which means there’s enough
+  </p>
+  <p>
+   training data to get generated text of
+   <em>
+    reasonable
+   </em>
+   quality. It’s not going to
+  </p>
+  <p>
+   be perfect, but it will be fun. One final reason is that all Sherlock Holmes books
+  </p>
+  <p>
+   are available for free on
+   <a href="https://www.gutenberg.org/">
+    Project Gutenberg
+   </a>
+  </p>
+  <p>
+   The following books were used:
+  </p>
+  <ol>
+   <li>
+    A study in scarlet
+   </li>
+   <li>
+    The sign of the four
+   </li>
+   <li>
+    The hound of the baskervilles
+   </li>
+   <li>
+    The valley of fear
+   </li>
+   <li>
+    The adventure of sherlock holmes
+   </li>
+   <li>
+    The memoirs of sherlock holmes
+   </li>
+   <li>
+    The return of sherlock holmes
+   </li>
+   <li>
+    His last bow
+   </li>
+  </ol>
+  <p>
+   the header and footer of each book was removed prior to training and
+  </p>
+  <p>
+   all books were concatenated in a single .txt file of approximately 2.8 MB.
+  </p>
+  <p>
+   We will predict each character in the training data based it’s 30 preceding characters.
+  </p>
+  <p>
+   So
+   <strong>
+    the model accepts sequences of length 30 as input and predicts a single output each time
+   </strong>
+   .
+  </p>
+  <h2 id="network-architectures">
+   Network architectures
+  </h2>
+  <p>
+   We will use keras to define our networks. We will split our training data into
+  </p>
+  <p>
+   90% training set and 10% validation set. Our training set is approximately 2.5 MB, so
+  </p>
+  <p>
+   the
+   <strong>
+    parameter budget for the network is approximately 2.5 M
+   </strong>
+   parameters maximum.
+  </p>
+  <p>
+   We will test out three different network architectures, all of them having approximately
+  </p>
+  <p>
+   <strong>
+    2.4 M parameters
+   </strong>
+   . Starting from a single-layer LSTM (
+   <strong>
+    model A
+   </strong>
+   ), we will move on to
+  </p>
+  <p>
+   a
+   <em>
+    thinner
+   </em>
+   2-layer deep LSTM (
+   <strong>
+    model B
+   </strong>
+   ) and finally also test an even thinner
+  </p>
+  <p>
+   and deeper 5-layer LSTM (
+   <strong>
+    model C
+   </strong>
+   ). Since we use 2.4 M parameters, less than our parameter budget,
+  </p>
+  <p>
+   we will
+   <strong>
+    not use dropout
+   </strong>
+   . If overfitting appers to be a proble, we will add dropout later.
+  </p>
+  <p>
+   The models in detail (as defined in keras) are:
+  </p>
+  <p>
+   <strong>
+    model A:
+   </strong>
+   1-layer deep LSTM, 742 hidden units per layer
+  </p>
+  <pre><code class="python">dropout=0.0
+model = Sequential()
+model.add(LSTM(742, input_shape=(maxlen, len(chars)), dropout=dropout))
+model.add(Dense(len(chars)))
+model.add(Activation('softmax'))
+optimizer = 'adam'
+model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+</code></pre>
+  <p>
+   <strong>
+    model B:
+   </strong>
+   2-layer deep LSTM, 438 hidden units per layer
+  </p>
+  <pre><code class="python">dropout=0.0
+model = Sequential()
+model.add(LSTM(438, input_shape=(maxlen, len(chars)), return_sequences=True, dropout=dropout))
+model.add(LSTM(438, dropout=dropout))
+model.add(Dense(len(chars)))
+model.add(Activation('softmax'))
+optimizer = 'adam'
+model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+</code></pre>
+  <p>
+   <strong>
+    model C:
+   </strong>
+   5-layer deep LSTM, 256 hidden units per layer
+  </p>
+  <pre><code class="python">dropout=0.0
+model = Sequential()
+model.add(LSTM(256, input_shape=(maxlen, len(chars)), return_sequences=True, dropout=dropout))
+model.add(LSTM(256, return_sequences=True, dropout=dropout))
+model.add(LSTM(256, return_sequences=True, dropout=dropout))
+model.add(LSTM(256, return_sequences=True, dropout=dropout))
+model.add(LSTM(256, dropout=dropout))
+model.add(Dense(len(chars)))
+model.add(Activation('softmax'))
+optimizer = 'adam'
+model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+</code></pre>
+  <h2 id="results">
+   Results
+  </h2>
+  <p>
+   We will use keras to define our networks. We will split our training data into
+  </p>
+  <p>
+   We will train all models using a batch size of 512, until the validation loss converges
+  </p>
+  <p>
+   or starts overfitting. For each of the models (A, B or C) we will save the model version
+  </p>
+  <p>
+   (model weights) that achieve the best results in terms of validation loss.
+  </p>
+  <h3 id="model-size">
+   Model size
+  </h3>
+  <p>
+   All models have approximately the same number of
+   <strong>
+    2.44 M
+   </strong>
+   parameters. This is important
+  </p>
+  <p>
+   since we only want to investigate the effect of added depth on model performance, if we
+  </p>
+  <p>
+   simply stack layers of the same size on each other, a model with more layers will have
+  </p>
+  <p>
+   more parameters and will not be directly comparably to a deeper or shallower model.
+  </p>
+  <p>
+   <img alt="Drawing" src="./params.png" style="width: 600px;"/>
+  </p>
+  <h3 id="training-time-per-epoch">
+   Training time per epoch
+  </h3>
+  <p>
+   We can see that deeper models take longer to train, probably since the optimizer is having
+  </p>
+  <p>
+   a hard time. Recent advances in feed-forward networks such as
+   <strong>
+    batch normalization
+   </strong>
+   and
+   <strong>
+    residual connections
+   </strong>
+  </p>
+  <p>
+   have not yet been established in
+   <em>
+    mainsteam
+   </em>
+   LSTM architectures, but there are promising results. Links to
+  </p>
+  <p>
+   some interesting papers in this direction are included in the end of the post (Recurrent batch normalization
+  </p>
+  <p>
+   and Residual LSTM).
+  </p>
+  <p>
+   <img alt="Drawing" src="./train_time.png" style="width: 600px;"/>
+  </p>
+  <h3 id="number-of-epochs-until-convergence">
+   Number of epochs until convergence
+  </h3>
+  <p>
+   So deeper networks need more time per epoch. But how many epochs are needed until convergence?
+  </p>
+  <p>
+   As we can see from the following plot the 1 and 2-layer LSTMs converge very fast and start overfitting
+  </p>
+  <p>
+   before 10 epochs. On the other hand, the 5-layer LSTM needs 2 to 3 times as many epochs for the validation
+  </p>
+  <p>
+   loss to start converging.
+  </p>
+  <p>
+   <img alt="Drawing" src="./train_curves.png" style="width: 600px;"/>
+  </p>
+  <h2 id="the-verdict">
+   The verdict
+  </h2>
+  <p>
+   <strong>
+    So, are deeper recurrent networks worth it? Yes, if they are not too deep
+   </strong>
+   . As we can see above, the 1-layer LSTM is worse than the
+  </p>
+  <p>
+   2-layer network in terms of performance (although it trains fast).
+   <strong>
+    The 2-layer LSTM is the best network in terms of performance
+   </strong>
+  </p>
+  <p>
+   (validation loss) and is very close to the 1-layer network in terms of overall training time (time per epoch and number of epochs
+  </p>
+  <p>
+   until convergence). The 5-layer network is not as useful. It is much harder and slower to train than the 2-layer network and is the worst
+  </p>
+  <p>
+   of all networks in terms of performance.
+  </p>
+  <h2 id="can-we-do-better">
+   Can we do better?
+  </h2>
+  <p>
+   As we discussed above,
+   <strong>
+    Recurrent Batch Normalization
+   </strong>
+   and
+   <strong>
+    Residual LSTM
+   </strong>
+   (links at the end of the article) seem promising approaches
+  </p>
+  <p>
+   to training deep recurrent networks, but we’re not there yet. However, in this specific problem we saw that even our
+   <em>
+    best
+   </em>
+   2-layer LSTM
+  </p>
+  <p>
+   starts overfitting quite early. So let’s train it again, this time using a
+   <strong>
+    small value of dropout=0.2
+   </strong>
+   and see if the validation loss improves.
+  </p>
+  <p>
+   <strong>
+    Using dropout minimally increases training time per epoch, but needs 2 or 3 times the number of epochs to reach a minimum value for the validation loss.
+   </strong>
+  </p>
+  <p>
+   In this case, the training time per epoch increased by 2.5 min from 36 to 38.5 min per epoch, but converged much later as seen in the training curve.
+  </p>
+  <p>
+   The
+   <strong>
+    original 2-layer LSTM achieves 1.139 validation loss (7th epoch)
+   </strong>
+   , while the
+   <strong>
+    2-layer LSTM with dropout=0.2 achieves 1.12 validation loss (20th epoch)
+   </strong>
+   .
+  </p>
+  <p>
+   So we did manage to improve results a little bit. Another thing we could try is increasing the sequence length used for prediction. We currently predict
+  </p>
+  <p>
+   the 31st character based on the 30 preceding characters. We could possibly get more interesting results if we predict e.g. the 101st character based
+  </p>
+  <p>
+   on the 100 preceding characters, but such an approach would be more time &amp; memory intensive.
+  </p>
+  <p>
+   <img alt="Drawing" src="./train_curves_2x438.png" style="width: 600px;"/>
+  </p>
+  <h2 id="summary-best-performance-of-all-models">
+   Summary: best performance of all models
+  </h2>
+  <p>
+   Here we show the best validation loss achieved by all models (lower is better). We see that the 2-layer LSTM with dropout 0.2 outperforms all
+  </p>
+  <p>
+   other models, while the 5-layer LSTM performs the worst. So deeper models can be better than shallow, 1-layer LSTMs. However, recurrent models that are too deep
+  </p>
+  <p>
+   are more difficult to train (at least for the moment).
+  </p>
+  <p>
+   <img alt="Drawing" src="./best_val_loss.png" style="width: 600px;"/>
+  </p>
+  <h2 id="example-generated-text">
+   Example generated text
+  </h2>
+  <p>
+   Here we showcase some text generated by the best model (2-layer LSTM, dropout = 0.2). The random seed used as input to the model before text
+  </p>
+  <p>
+   generaton begins consists of the following 30 characters: ‘On the very day that I had com’.
+  </p>
+  <p>
+   We will generate 800 characters for different values of diversity. The diversity (or temperature) controls the
+   <em>
+    degree of randomness
+   </em>
+   used
+  </p>
+  <p>
+   when sampling from the models output. For low values of diversity (e.g. 0.1) we only sample characters that the model is very sure about.
+  </p>
+  <p>
+   The text makes sense, but tends to be repetitive and boring. For high values of diversity (e.g. 1 or greater) the generated text might not make any
+  </p>
+  <p>
+   sense. The good thing is that we can
+   <strong>
+    try out different values of diversity with the same trained model
+   </strong>
+   (usual values are in [0,1]). Then,
+  </p>
+  <p>
+   we can select the value of diversity that qualitatively yields the best results.
+  </p>
+  <pre><code class="html">
+
+===== diversity: 0.1 =====
+on the very day that i had come to the station and the colonel and the colonel and the station which had been so far 
+
+as to the station and the colonel and the strange expression of the station and the station which had been seen the 
+
+same as the other was a strong problem which had been a man of the man who had been a very serious conclusion, and i 
+
+was able to see you to the station. i think that i have no doubt that i have not been taken as a strange story of the 
+
+station and the colonel and the station of the station and the station which had been seen the state of the station 
+
+and the colonel and the station which had been so far as to the man of the matter. i was able to see that the man was 
+
+a very small part of the station. i was able to see that the man was a very strange conclusion that i have not been 
+
+taken to the
+
+===== diversity: 0.3 =====
+on the very day that i had come to his little time, and i was able to prove that the man was a strong problem which 
+
+would be able
+
+to see him in the morning.”
+
+
+“what a man was a common conversation which had been taken to his face. “i will not tell you that this should be a 
+
+man of the matter upon the moor?”
+
+
+“no, i said that the blow was a state of great careless and of my mind and the
+
+whole house was a strange conclusion which was a little man who had been so drawn in the middle of the moor. the lady 
+
+was a pretty strong problem of the facts. i think that i am afraid that i should be very happy to see the station and 
+
+the single character of the house and a look of the house was struck by the station and admiration was still and as 
+
+he could not have been a promise of the matter which i shall be able to see you to the con
+
+===== diversity: 0.5 =====
+on the very day that i had come. i should be very glad to have the station of the stream of being
+
+a very strange curious business.  the facts are seriously a man to get up and down. i was at the admirable corner of 
+
+the man who had been done by the police and leave to the strength of the terrible steps and the convict showed me 
+
+that the news are at the man, and that i can see that the
+
+furniture was too much to see him in the law. you said that i could not have to strange and likely that the other 
+
+reason was on the same conclusion. at the same time, i should not give me a singular advantage of the world that they 
+
+had
+
+shown the advantage of his own country. he was an accident and committed to the convict, as it seemed to me that he 
+
+had been made a large
+
+party to see that he was able to see that it was a man of a man of my
+
+===== diversity: 0.7 =====
+on the very day that i had come to
+
+any very far to give him in the
+
+same ways of his problem for a strange visitor when the third geemen was still an oath and earnest word. the house 
+
+may have made a carpet. i will
+
+rehurd to the hound to serve these things as to the better?”
+
+
+“no, no, it is so earnest about the fastent which is too much
+
+able to explain the planking importance to the advertisement which he
+
+had drawn down the door, and the
+
+two continents and murmur showed that the case was so very successful that i should be a man who will certainly do 
+
+it. the carriage would end in the station, and i was standing in his chair and confessed that the great person who
+
+did not find the light upon the middle. it is never bad.”
+
+
+“none of them are all dreadful.  a month, and that if they were reported to your judgment. the clue w
+
+===== diversity: 1 =====
+on the very day that i had come drooping pouch of six air,
+
+it is slightened by an end."
+
+
+
+"if dr. mortimer has seen, and
+
+pale cab, since you shauld see a glimpse of that day?"
+
+
+
+"no; but there was him and was still weary. it
+
+carefully come from the point.”
+
+
+
+“so for it! i think, dr. mortimers i shall need and
+
+make the glimpses."
+
+
+
+"what is consequent name? well, you are well sitting in
+
+the meantime. i can easily do so,
+
+for she does not give us on, mr. jonas oney,
+
+and came to a coronet and a square
+
+of hound, for the invalid lib,
+
+leaved ourselves, and the once since everything according to the next bottle and edge took ryaffership about the 
+
+brussion
+
+of his village.  i have night at once did he interrupt you, sir. but, i fancy that what my wretched death shall
+
+not propose, watson?"
+
+
+
+"i tell you that you may have made your hei
+
+===== diversity: 2 =====
+on the very day that i had comjupinited.  we picked, shaved-peosezt or kenne,
+
+came backpoof, uppersiglizan effrois, just
+
+fapa awgy. yunding
+
+from the lent ermak to-maw?’ tais violet
+
+object about whomeeting it should underivel?"
+
+
+
+"is bliosi-raising syfic froe who rrouddn;
+
+est, lorsh-glag from
+
+moilayiam, unty daughter; she kept yax 127 pions upon druw?”
+
+
+
+my frodk?"
+
+
+
+svitetmus dcmuchest into eye if “you
+
+know anyefus o'clock?” holmes sor,, laughing
+
+wibdled, layfift.' eothur
+
+piere xon toulla.’
+
+
+
+“‘ohlahily?"
+
+
+
+"i enterectay'--that," he apploved, né know,
+
+perhaps do; why's four’peds, didnegiant!
+
+firun, tobding
+
+
+
+442 evidence’s
+
+idmanu, mr., usband."-
+
+in fvalkyil-st; n’k befile the villeter    'us my horsor for a
+
+policymatch_’, glmantit [29 h’:h’t.”
+
+
+
+“and i?'w
+
+"it’s bought to jee-undup luffed, ‘you
+
+bring holpeu gum.
+
+
+    let. he'’
+
+</code></pre>
+  <h2 id="the-10000-character-generated-example">
+   The 10,000 character generated example
+  </h2>
+  <p>
+   Here we will do our best to write a new Sherlock Holmes story. Sadly, our LSTM does not perform as well as Sir Arthur Conan Doyle.
+  </p>
+  <p>
+   But this doesn’t mean we can’t have some fun reading the text. It also helps us understand better what our model actually learns to generate.
+  </p>
+  <p>
+   <a href="https://github.com/nchlis/sherlocknet/blob/master/generated_text_10Kchars.txt">
+    Here’s the link to the 10,000 character example
+   </a>
+  </p>
+  <h2 id="code-availability">
+   Code availability
+  </h2>
+  <p>
+   The source code of this project is
+   <a href="https://github.com/nchlis/sherlocknet">
+    freely available on github
+   </a>
+   .
+  </p>
+  <h2 id="additional-information-useful-links">
+   Additional information &amp; Useful links
+  </h2>
+  <ul>
+   <li>
+    <p>
+     <a href="https://www.youtube.com/watch?v=iX5V1WpxxkY">
+      cs231n RNN/LSTM lecture on youtube
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">
+      Andrej Karpathy’s blog post on char-to-char RNNs
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py">
+      Keras example on character to character text generation
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1308.0850">
+      paper - Generating Sequences With Recurrent Neural Networks
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="http://dl.acm.org/citation.cfm?id=1246450">
+      paper - Long Short-Term Memory (LSTM original paper)
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1603.09025">
+      paper - Recurrent Batch Normalization
+     </a>
+    </p>
+   </li>
+   <li>
+    <p>
+     <a href="https://arxiv.org/abs/1701.03360">
+      paper - Residual LSTM: Design of a Deep Recurrent Architecture for Distant Speech Recognition
+     </a>
+    </p>
+   </li>
+  </ul>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js">
+  </script>
+  <script>
+   hljs.initHighlightingOnLoad();
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   MathJax.Hub.Config({"showProcessingMessages" : false,"messageStyle" : "none","tex2jax": { inlineMath: [ [ "$", "$" ] ] }});
+  </script>
+ </body>
+</html>
