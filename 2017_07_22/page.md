@@ -64,7 +64,7 @@ are available for free on [Project Gutenberg](https://www.gutenberg.org/)
 
 The following books were used:
 
-1. A study in scarlet
+1. A study in scarlet 
 2. The sign of the four
 3. The hound of the baskervilles
 4. The valley of fear
