@@ -245,7 +245,7 @@ sense. The good thing is that we can **try out different values of diversity wit
 
 we can select the value of diversity that qualitatively yields the best results.
 
-```
+```html
 
 
 ===== diversity: 0.1 =====
