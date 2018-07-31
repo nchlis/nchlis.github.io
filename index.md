@@ -24,7 +24,7 @@ this website will be rather _minimal_ (markdown to html).
 
 ## Index
 
-* **2018/07/28**: [Deep learning for image captioning: Should RNNs just stick to text?](./2018_07_28/page.html)
+* **2018/07/28**: [Deep learning for image captioning: Should RNNs be blind?](./2018_07_28/page.html)
 * **2017/08/10**: [Applying Dropout in Convolutional Neural Nets: Where and to what extent?](./2017_08_10/page.html)
 * **2017/07/22**: [Deep or Wide RNNs? Let's generate new Sherlock Holmes stories and find out.](./2017_07_22/page.html)
 * **2012, Winter**: [Teaching a computer to play blackjack with reinforcement learning (old project, in Greek).](http://www.intelligence.tuc.gr/~robots/ARCHIVE/2012w/projects/Chlis/)
