@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0038)file:///home/nikos/Downloads/page.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head><meta charset="utf-8" />
 <title>page</title>
 
-<script src="./page_files/require.min.js"></script>
-<script src="./page_files/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
     /*!
@@ -11718,13 +11718,13 @@ div#notebook {
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="file:///home/nikos/Downloads/custom.css">
+<link rel="stylesheet" href="custom.css">
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="./page_files/MathJax.js" id=""></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config;executed=true">
+    <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
             inlineMath: [ ['$','$'], ["\\(","\\)"] ],
@@ -11741,103 +11741,8 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration --><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
-.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
-.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
-.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
-.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
-</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
-#MathJax_About.MathJax_MousePost {outline: none}
-.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
-.MathJax_MenuItem {padding: 1px 2em; background: transparent}
-.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
-.MathJax_MenuActive .MathJax_MenuArrow {color: white}
-.MathJax_MenuArrow.RTL {left: .5em; right: auto}
-.MathJax_MenuCheck {position: absolute; left: .7em}
-.MathJax_MenuCheck.RTL {right: .7em; left: auto}
-.MathJax_MenuRadioCheck {position: absolute; left: .7em}
-.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
-.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
-.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
-.MathJax_MenuDisabled {color: GrayText}
-.MathJax_MenuActive {background-color: #606872; color: white}
-.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
-.MathJax_ContextMenu:focus {outline: none}
-.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
-#MathJax_AboutClose {top: .2em; right: .2em}
-.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
-.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
-.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
-.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
-.MathJax_MenuClose:hover span {background-color: #CCC!important}
-.MathJax_MenuClose:hover:focus {outline: none}
-</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
-</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
-.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
-</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
-#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
-#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
-#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
-</style><style type="text/css">.MathJax_Preview {color: #888}
-#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
-#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
-.MathJax_Error {color: #CC0000; font-style: italic}
-</style><style type="text/css">.MJXp-script {font-size: .8em}
-.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
-.MJXp-bold {font-weight: bold}
-.MJXp-italic {font-style: italic}
-.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
-.MJXp-largeop {font-size: 150%}
-.MJXp-largeop.MJXp-int {vertical-align: -.2em}
-.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
-.MJXp-display {display: block; text-align: center; margin: 1em 0}
-.MJXp-math span {display: inline-block}
-.MJXp-box {display: block!important; text-align: center}
-.MJXp-box:after {content: " "}
-.MJXp-rule {display: block!important; margin-top: .1em}
-.MJXp-char {display: block!important}
-.MJXp-mo {margin: 0 .15em}
-.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
-.MJXp-denom {display: inline-table!important; width: 100%}
-.MJXp-denom > * {display: table-row!important}
-.MJXp-surd {vertical-align: top}
-.MJXp-surd > * {display: block!important}
-.MJXp-script-box > *  {display: table!important; height: 50%}
-.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
-.MJXp-script-box > *:last-child > * {vertical-align: bottom}
-.MJXp-script-box > * > * > * {display: block!important}
-.MJXp-mphantom {visibility: hidden}
-.MJXp-munderover {display: inline-table!important}
-.MJXp-over {display: inline-block!important; text-align: center}
-.MJXp-over > * {display: block!important}
-.MJXp-munderover > * {display: table-row!important}
-.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
-.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
-.MJXp-mtr {display: table-row!important}
-.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
-.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
-.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
-.MJXp-mlabeledtr {display: table-row!important}
-.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
-.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
-.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
-.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
-.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
-.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
-.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
-.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
-.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
-.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
-.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
-.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
-.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
-.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
-</style></head>
-<body style=""><div id="MathJax_Message" style="display: none;"></div>
+    <!-- End of mathjax configuration --></head>
+<body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
@@ -11846,9 +11751,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Deep-learning-for-image-captioning:-Should-RNNs-be-blind?">Deep learning for image captioning: Should RNNs be blind?<a class="anchor-link" href="file:///home/nikos/Downloads/page.html#Deep-learning-for-image-captioning:-Should-RNNs-be-blind?">¶</a></h1><p><a href="file:///home/nikos/index.html">Back to index</a></p>
-<h2 id="Image-captioning-with-deep-learning">Image captioning with deep learning<a class="anchor-link" href="file:///home/nikos/Downloads/page.html#Image-captioning-with-deep-learning">¶</a></h2><p>Image captioning is the task of generating a text description for a given input image. For example, given the image below, we would like to automatically generate a description, such as: "a dog running in the snow".</p>
-<p><img src="file:///home/nikos/Downloads/pexels-photo-434090_small.png" width="340" height="340" align="center"></p>
+<h1 id="Deep-learning-for-image-captioning:-Should-RNNs-be-blind?">Deep learning for image captioning: Should RNNs be blind?<a class="anchor-link" href="#Deep-learning-for-image-captioning:-Should-RNNs-be-blind?">&#182;</a></h1><p><a href="../index.html">Back to index</a></p>
+<h2 id="Image-captioning-with-deep-learning">Image captioning with deep learning<a class="anchor-link" href="#Image-captioning-with-deep-learning">&#182;</a></h2><p>Image captioning is the task of generating a text description for a given input image. For example, given the image below, we would like to automatically generate a description, such as: "a dog running in the snow".</p>
+<p><img src="./pexels-photo-434090_small.png" width="340" height="340" align="center"/></p>
 <p>However, there is no single solution to an image captioning problem, since given the above image, all following captions are correct:</p>
 <ul>
 <li>A dog running in the snow.</li>
@@ -11856,76 +11761,75 @@ div#notebook {
 <li>A dog with a red collar standing in a snowy field.</li>
 </ul>
 <p>But they all accurately describe the image. In essence, we would like to use a method that would also describe the image, as accurately as humans. How can we do this? In essense this can be reduced to a single classification problem at every timestep, where given an image and a sequence of past words the model predicts the next word in the sequence. We then "feed" the predicted word again into our model, produce the next word etc. The process is depicted below:</p>
-<p><img src="file:///home/nikos/Downloads/caption_generation.png" width="500" height="2000" align="center"></p>
-<h3 id="Sidenote-#1:-What-if-the-model-does-not-predict-an-&lt;end&gt;-token?">Sidenote #1: What if the model does not predict an <code>&lt;end&gt;</code> token?<a class="anchor-link" href="file:///home/nikos/Downloads/page.html#Sidenote-#1:-What-if-the-model-does-not-predict-an-%3Cend%3E-token?">¶</a></h3><p>This can happen in practice. For example a model can get stuck in repeating the same sequence of words. The most common way to address this is to stop caption generation after a fixed number of steps (e.g. stop if no <code>&lt;end&gt;</code> token is seen after generating 30 words).</p>
-<h3 id="Sidenote-#2:-RNN&#39;s">Sidenote #2: RNN's<a class="anchor-link" href="file:///home/nikos/Downloads/page.html#Sidenote-#2:-RNN&#39;s">¶</a></h3><p>At this point we assume that the reader is familiar with Recurrent Neural Networks (RNNs), if not here are some excellent sources of information:</p>
+<p><img src="./caption_generation.png" width="500" height="2000" align="center"/></p>
+<h3 id="Sidenote-#1:-What-if-the-model-does-not-predict-an-&lt;end&gt;-token?">Sidenote #1: What if the model does not predict an <code>&lt;end&gt;</code> token?<a class="anchor-link" href="#Sidenote-#1:-What-if-the-model-does-not-predict-an-&lt;end&gt;-token?">&#182;</a></h3><p>This can happen in practice. For example a model can get stuck in repeating the same sequence of words. The most common way to address this is to stop caption generation after a fixed number of steps (e.g. stop if no <code>&lt;end&gt;</code> token is seen after generating 30 words).</p>
+<h3 id="Sidenote-#2:-RNN's">Sidenote #2: RNN's<a class="anchor-link" href="#Sidenote-#2:-RNN's">&#182;</a></h3><p>At this point we assume that the reader is familiar with Recurrent Neural Networks (RNNs), if not here are some excellent sources of information:</p>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=iX5V1WpxxkY">cs231n lecture on RNNs</a></li>
 <li><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">C. Olah: Understanding LSTM Networks</a></li>
 <li><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">A. Karpathy: The Unreasonable Effectiveness of Recurrent Neural Networks</a></li>
 </ul>
-<h2 id="Image-captioning-architectures:-Should-the-RNN-process-visual-information?">Image captioning architectures: Should the RNN process visual information?<a class="anchor-link" href="file:///home/nikos/Downloads/page.html#Image-captioning-architectures:-Should-the-RNN-process-visual-information?">¶</a></h2><p>You might have noticed above that we abstracted the method used, simply as "Network". There are a number of architectures used in the literature but have one thing in common: they use some sort of RNN. Another thing they have in common is that instead of presenting the "raw" image to the captioning network, they distill each image into a set of image features using a pre-trained CNN on ImageNet such as <a href="https://arxiv.org/abs/1409.1556">VGG</a>.
+<h2 id="Image-captioning-architectures:-Should-the-RNN-process-visual-information?">Image captioning architectures: Should the RNN process visual information?<a class="anchor-link" href="#Image-captioning-architectures:-Should-the-RNN-process-visual-information?">&#182;</a></h2><p>You might have noticed above that we abstracted the method used, simply as "Network". There are a number of architectures used in the literature but have one thing in common: they use some sort of RNN. Another thing they have in common is that instead of presenting the "raw" image to the captioning network, they distill each image into a set of image features using a pre-trained CNN on ImageNet such as <a href="https://arxiv.org/abs/1409.1556">VGG</a>.
 There are two main sub-architectures of captioning networks, depending on the role of the RNN component. Following the naming convention of Tanti et al. (<a href="https://arxiv.org/pdf/1708.02043.pdf">2017</a>) (<a href="https://arxiv.org/pdf/1703.09137.pdf">2018</a>) these sub-architectures are:</p>
 <ol>
 <li><strong>Inject:</strong> the RNN encodes the text (sequence of words in the caption), as well as visual information. This by far the most common architecture found in literature (e.g. <a href="https://arxiv.org/pdf/1411.4555.pdf">Vinyals et al. 2015</a>). In this "school of thought" the RNN is seen as a complete caption generator. It should be noted that not all inject architectures handle image features the same way. For example in some cases the RNN only "sees" the image in the beginning (time step 0) and then is presented the sequence of input words (e.g. <a href="https://arxiv.org/pdf/1411.4555.pdf">Vinyals et al. 2015</a>). In other cases the RNN sees the image features along with the corresponding input word(s) (e.g. <a href="https://cs.stanford.edu/people/karpathy/cvpr2015.pdf">Karpathy et al. 2015</a>).
-<img src="file:///home/nikos/Downloads/inject.png" width="500" align="center">
-<center>** Inject:** the RNN handles both text and image features.</center>
+<img src="./inject.png" width="500" align="center"/>
+<center><b> Inject:</b> the RNN handles both text and image features.</center>
 <br></li>
 <li><strong>Merge:</strong> the RNN encodes only the text, while visual information is added to the network at a later stage.
 In this case the role of the RNN is just efficiently encoding the textual information. The (encoded) textual information is merged with the image features at a later stage and classification is performed to determine the next word in the generated caption <a href="https://arxiv.org/pdf/1412.6632.pdf">Mao et al. 2015</a>. 
-<img src="file:///home/nikos/Downloads/merge.png" width="450" align="center">
-<center><br>** Merge:** the RNN only handles text.</center>
+<img src="./merge.png" width="450" align="center"/>
+<center><br><b> Merge:</b> the RNN only handles text.</center>
 <br></li>
 </ol>
-<h2 id="Benchmark:-Inject-vs-Merge">Benchmark: Inject vs Merge<a class="anchor-link" href="file:///home/nikos/Downloads/page.html#Benchmark:-Inject-vs-Merge">¶</a></h2><p>We know from literature that merge architectures are comparable to inject architectures in terms of performance with one added benefit: they are a bit faster (for the same number of recurrent units). Since the RNN only handles text in Inject architectures, it tends to have smaller input size, hence a smaller number of parameters. Fewer parameters to train lead to faster training times. Here we will reproduce a subset of the results of <a href="https://arxiv.org/pdf/1708.02043.pdf">Tanti et al. 2017</a>. Specifically we will focus only on the <a href="https://forms.illinois.edu/sec/1713398">Flickr8k dataset</a> and will compare the methods using <a href="https://en.wikipedia.org/wiki/BLEU">BLEU scores</a> only. While Tanti et al. only use an LSTM <a href="https://dl.acm.org/citation.cfm?id=1246450">Hochreiter et al. 1997</a> for the RNN component of the captioning network, we additionally repeat the experiments using a GRU <a href="https://arxiv.org/pdf/1409.1259.pdf">Cho et al. 2014</a> instead.</p>
+<h2 id="Benchmark:-Inject-vs-Merge">Benchmark: Inject vs Merge<a class="anchor-link" href="#Benchmark:-Inject-vs-Merge">&#182;</a></h2><p>We know from literature that merge architectures are comparable to inject architectures in terms of performance with one added benefit: they are a bit faster (for the same number of recurrent units). Since the RNN only handles text in Inject architectures, it tends to have smaller input size, hence a smaller number of parameters. Fewer parameters to train lead to faster training times. Here we will reproduce a subset of the results of <a href="https://arxiv.org/pdf/1708.02043.pdf">Tanti et al. 2017</a>. Specifically we will focus only on the <a href="https://forms.illinois.edu/sec/1713398">Flickr8k dataset</a> and will compare the methods using <a href="https://en.wikipedia.org/wiki/BLEU">BLEU scores</a> only. While Tanti et al. only use an LSTM <a href="https://dl.acm.org/citation.cfm?id=1246450">Hochreiter et al. 1997</a> for the RNN component of the captioning network, we additionally repeat the experiments using a GRU <a href="https://arxiv.org/pdf/1409.1259.pdf">Cho et al. 2014</a> instead.</p>
 <ul>
 <li><strong><a href="https://forms.illinois.edu/sec/1713398">Flickr8k dataset</a></strong> <a href="https://jair.org/index.php/jair/article/view/10833">Hodosh et al. 2013</a> consists of 8K images, with 5 unique captions corresponding to each image (pro-tip: there are actually 8091 images, but only 8000 have captions). There are pre-determined training (6000 images), validation (1000 images) and test (1000 images) sets.</li>
 <li><strong><a href="https://en.wikipedia.org/wiki/BLEU">BLEU scores</a></strong> <a href="https://www.aclweb.org/anthology/P02-1040.pdf">Papineni et al. 2002</a> were originally introduced to assess the quality of machine translation methods. They range from 0 to 1, the higher the better.</li>
 </ul>
 <p>Here are the results:</p>
-<p><img src="file:///home/nikos/Downloads/compare_type.png" width="800" align="center"></p>
-<center>** Inject vs Merge:** Inject architectures have similar performance to Merge, but are faster in terms of total training time. </center>
+<p><img src="./compare_type.png" width="800" align="center"/></p>
+<center><b> Inject vs Merge:</b> Inject architectures have similar performance to Merge, but are faster in terms of total training time. </center>
 <br>
 
-<img src="file:///home/nikos/Downloads/compare_model.png" width="800" align="center">
-<center>** LSTM vs GRU:** GRU has similar performance to LSTM, but is faster in terms of total training time. </center>
+<img src="./compare_model.png" width="800" align="center"/>
+<center><b> LSTM vs GRU:</b> GRU has similar performance to LSTM, but is faster in terms of total training time. </center>
 <br>
 
 From now on we focus on our "best" model: Merge architecture with GRU. Best meaning: comparable performance but faster than the rest. Now let's sprinkle a bit of dropout after every layer and see how the model reacts:
 
-<img src="file:///home/nikos/Downloads/merge_GRU_dropout.png" width="800" align="center">
-<center>** Merge-GRU with dropout:** A dropout of 25% increases model performance, at the cost of training time (as expected). </center>
+<img src="./merge_GRU_dropout.png" width="800" align="center"/>
+<center><b> Merge-GRU with dropout:</b> A dropout of 25% increases model performance, at the cost of training time (as expected). </center>
 <br>
 
 ## The fun part: Generating captions for images!
 
 Now we can confirm that the performance of Inject and Merge architectures is comparable and Merge architectures are bit faster. We also saw that using a GRU instead of an LSTM can be a good idea for this specific problem. Now let's have some fun and generate captions for new images. I downloaded some images from https://www.pexels.com where the [licence](https://www.pexels.com/photo-license/) (as of July 2018) states that "*The pictures are free for personal and even for commercial use*". Here are captioned images ranked from best to worst:
 
-<img src="file:///home/nikos/Downloads/captioned_pexels-photo-434090.png" width="350" align="center">
+<img src="./captioned_pexels-photo-434090.png" width="350" align="center"/>
 The network gets this one right! In general there are many images of dogs in the Flickr8k dataset (I guess people like sharing photos of their dogs on the internet...) so the network usually gets these right, unless the background is too complex.
 
-<img src="file:///home/nikos/Downloads/captioned_pexels-photo-264005.png" width="350" align="center">
-<center>Another example which demonstrates that our network is quite good at describing dogs in front of a simple background.</center><p><img src="file:///home/nikos/Downloads/captioned_pexels-photo-101667.png" width="350" align="center"></p>
-<center>This example showcases that our network is overfitting the Flickr8k dataset, thus mistaking the horse for a dog.</center><p><img src="file:///home/nikos/Downloads/captioned_adult-beard-blurred-background-1187852.png" width="600" align="center">
+<img src="./captioned_pexels-photo-264005.png" width="350" align="center"/>
+<center>Another example which demonstrates that our network is quite good at describing dogs in front of a simple background.</center><p><img src="./captioned_pexels-photo-101667.png" width="350" align="center"/></p>
+<center>This example showcases that our network is overfitting the Flickr8k dataset, thus mistaking the horse for a dog.</center><p><img src="./captioned_adult-beard-blurred-background-1187852.png" width="600" align="center"/>
 The network is very good at detecting men, especially in red shirts. It just works it this case. The "<em>in front of the building</em>" part is debatable (since there are only a couple of columns in the background) but not wrong.</p>
-<p><img src="file:///home/nikos/Downloads/captioned_pexels-photo-136399.png" width="400" align="center">
+<p><img src="./captioned_pexels-photo-136399.png" width="400" align="center"/>
 In this case the network is correct about a <strong>man jumping</strong>, he has a white <strong>shirt</strong>. There is however a woman with a <strong>red</strong> dress jumping next to him. There is no rock, but the network has probably learned that when people jump into the water, they do so from rocks, which is not always the case.</p>
-<p><img src="file:///home/nikos/Downloads/captioned_pexels-photo-247522.png" width="400" align="center">
+<p><img src="./captioned_pexels-photo-247522.png" width="400" align="center"/>
 The network gets detects the <strong>water</strong> in the image, but mistakes the standing dog for a man in a red shirt.</p>
-<p><img src="file:///home/nikos/Downloads/captioned_mini-cooper-auto-model-vehicle.png" width="400" align="center">
+<p><img src="./captioned_mini-cooper-auto-model-vehicle.png" width="400" align="center"/>
 Our network seems to hallucinate a man in a red shirt again. It mistakes the toy car for a skateboard, probably by associating the wheels of the car to the wheels of a skateboard.</p>
-<h2 id="What&#39;s-next?">What's next?<a class="anchor-link" href="file:///home/nikos/Downloads/page.html#What&#39;s-next?">¶</a></h2><p>Now that we have a feeling for image captioning with neural networks, we move on to other interesting topics such as:</p>
+<h2 id="What's-next?">What's next?<a class="anchor-link" href="#What's-next?">&#182;</a></h2><p>Now that we have a feeling for image captioning with neural networks, we move on to other interesting topics such as:</p>
 <ul>
 <li><strong>Attention</strong>: interesting aspect of newer image captioning methods. Highlights which parts of the image influence the generation of each word in the caption.</li>
 <li><strong>Larger datasets</strong>: it would be nice to train our best model on Flickr30K and/or <a href="http://cocodataset.org/#home">MS-COCO</a> and see if captioning performance improves on the above example images.</li>
 </ul>
-<h2 id="Code-availability">Code availability<a class="anchor-link" href="file:///home/nikos/Downloads/page.html#Code-availability">¶</a></h2><p>The source code of this project is <a href="https://github.com/nchlis/image_captioning">freely available on github</a>.</p>
+<h2 id="Code-availability">Code availability<a class="anchor-link" href="#Code-availability">&#182;</a></h2><p>The source code of this project is <a href="https://github.com/nchlis/image_captioning">freely available on github</a>.</p>
 
 </div>
 </div>
 </div>
     </div>
   </div>
-
-
-</body></html>
+</body>
+</html>
