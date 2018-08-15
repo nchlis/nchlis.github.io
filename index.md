@@ -4,7 +4,7 @@
 
 This blog is an attempt to document some of my A.I. related side projects.
 
-I'm mostly writing it for personal reference, so it requires that the reader
+I\'m mostly writing it for personal reference, so it requires that the reader
 
 is at least a bit familiar with machine/deep learning concepts. That is, it
 
@@ -24,8 +24,9 @@ this website will be rather _minimal_ (markdown to html).
 
 ## Index
 
+* **2018/08/15**: [Timeseries forecasting for M.L practitioners (and why you should probably use Random Forests for it)](./2018_08_15/page.html)
 * **2018/07/28**: [Deep learning for image captioning: Should RNNs be blind?](./2018_07_28/page.html)
 * **2017/08/10**: [Applying Dropout in Convolutional Neural Nets: Where and to what extent?](./2017_08_10/page.html)
-* **2017/07/22**: [Deep or Wide RNNs? Let's generate new Sherlock Holmes stories and find out.](./2017_07_22/page.html)
+* **2017/07/22**: [Deep or Wide RNNs? Let'\s generate new Sherlock Holmes stories and find out.](./2017_07_22/page.html)
 * **2012, Winter**: [Teaching a computer to play blackjack with reinforcement learning (old project, in Greek).](http://www.intelligence.tuc.gr/~robots/ARCHIVE/2012w/projects/Chlis/)
 
