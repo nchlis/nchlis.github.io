@@ -191,6 +191,7 @@ Given an input image, the goal of a segmentation method is to predict a segmenta
 <h2 id="Dataset:">Dataset:<a class="anchor-link" href="#Dataset:">&#182;</a></h2><p><div style="text-align: justify">
 We will use the C. Elegans data available from the <a href="https://data.broadinstitute.org/bbbc/BBBC010/">Broad Bioimage Benchmark Collection</a>. The goal is to predict the segmentation mask of each image, based on the two input channels (GFP, Brightfield). Negative control worms mostly display a dead (rod-like) phenotype, while the treated worms mostly display a live (curved) phenotype. In this tutorial, we are not interested in the phenotype, just using a UNET to predict the segmentation masks. An example image of two input channels and its corresponding ground truth mask is shown below:
 
+
 <img src="./example_image.png" alt="example image" width="800">
 
 Each mask is a binary image where pixels set to one correspond to foreground (worm) and pixels set to zero correspond to background (not worm). Our goal is to train a UNET to predict the mask, based on the GFP and Brightfield channels, as shown in the concept figure below:
